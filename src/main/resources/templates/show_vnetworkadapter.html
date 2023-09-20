@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <head th:replace="fragments :: headSection">
+  </head>
+<body>
+<!--Aufbau der Seite-->
+<div class="center">
+  <div th:insert="~{fragments :: header}"></div>
+  <br>
+  <div th:insert="~{fragments :: inputFields}"></div>
+  <div th:if="${errorMessage != null}" class="alert alert-danger">
+    <span th:text="${errorMessage}"></span>
+  </div>
+  <br>
+  <div th:insert="~{fragments :: buttons}"></div>
+</div>
+<div class="table-container" th:if="${!daten.isEmpty()}">
+  <table>
+    <thead>
+    <tr>
+      <!-- Dynamische Generierung aller Spaltenüberschriften basierend auf columnOrder -->
+      <th class="center border-head" th:each="col : ${columnOrder}" th:text="${col}"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="datenItem : ${daten}">
+
+      <!-- Explizite Datenzelle für 'vNetworkAdapter' mit zentriertem Text -->
+      <td class="text-center" th:text="${datenItem['vNetworkAdapter']}"></td>
+
+      <!-- Dynamische Generierung der anderen Datenzellen, überspringen von 'vNetworkAdapter' und 'isFirstDuplicate' -->
+      <td class="text-center" th:each="entry : ${datenItem.entrySet()}"
+          th:if="${entry.key != 'vNetworkAdapter' && entry.key != 'isFirstDuplicate'}"
+          th:text="${entry.value}">
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Modal-Dialog / Excel Datei hochgeladen -->
+<div th:insert="~{fragments :: excelUploadedModal}"></div>
+</div>
+<!--Am Ende des Codes, damit sichergestellt wird, dass gesamte DOM geladen wird, bevor das Script ausgeführt wird-->
+<script type="text/javascript" th:src="@{/script.js}"></script>
+</body>
+</html>

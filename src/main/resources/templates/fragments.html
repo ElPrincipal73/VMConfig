@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+</head>
+<body>
+<div th:fragment="headSection">
+    <title>VMConfigMonitoring</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/styles.css}">
+    <!-- Responsive Ansicht -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- jQuery und jQuery UI  -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
+    <!-- Popper.js, erforderlich für Bootstrap's JavaScript-Plugins -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.3/umd/popper.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</div>
+<h1 th:fragment="header" class="header-custom">VMConfigMonitoring</h1>
+
+<div th:fragment="inputFields">
+    <input type="text" id="datepicker" placeholder="yyyy-mm-dd" th:value="${date}" readonly>
+    <button onclick="document.getElementById('datepicker').value = '';">Reset Datum</button>
+    <label>Letzten Uploads:</label>
+    <select id="uploadIndex">
+        <option value="" disabled th:selected="${uploadIndex == null}">Bitte auswählen</option>
+        <option value="1" th:selected="${uploadIndex == 1}">1</option>
+        <option value="2" th:selected="${uploadIndex == 2}">2</option>
+        <option value="3" th:selected="${uploadIndex == 3}">3</option>
+        <option value="4" th:selected="${uploadIndex == 4}">4</option>
+        <option value="5" th:selected="${uploadIndex == 5}">5</option>
+        <option value="6" th:selected="${uploadIndex == 6}">6</option>
+        <option value="7" th:selected="${uploadIndex == 7}">7</option>
+        <option value="8" th:selected="${uploadIndex == 8}">8</option>
+        <option value="9" th:selected="${uploadIndex == 9}">9</option>
+        <option value="10" th:selected="${uploadIndex == 10}">10</option>
+    </select>
+    <button onclick="document.getElementById('uploadIndex').selectedIndex = 0;">Reset Upload</button>
+
+    <!--    Excel Upload-->
+    <label for="excelUpload" class="green-button">Excel Upload</label>
+    <input type="file" id="excelUpload" class="file-input" accept=".xlsx">
+</div>
+<div th:fragment="buttons">
+    <a th:href="@{/show_vnetworkvmname}" role="button" class="btn btn-outline-danger" data-toggle="tooltip"
+       data-placement="top" title="Listet alle DOPPELTEN VMNamen aus der Tabelle VNetwork auf
+
+Die DOPPELTEN VMNamen werden zusammen mit den Spalten aus der Tabelle VNetwork aufgelistet:
+- VNetworkVISDKServer
+- VNetworkHost
+- ausgewähltes DATUM oder
+- die ausgewählten letzten aktuellen UPLOADS
+
+HINWEIS: der grau hinterlegte Datensatz signalisiert den jeweiligen Beginn der doppelten VMNamen">
+        Dubletten VMName
+    </a>
+    <a th:href="@{/show_vnetworkadapter}" role="button" class="btn btn-outline-danger" data-toggle="tooltip"
+       data-placement="top" title="Listet alle vNetworkAdapter auf, welche NICHT den Wert >>Vmxnet3<< beinhalten
+
+Diese >Vmxnet3< vNetworkAdapter werden zusammen mit den Spalten aus der Tabelle VNetwork aufgelistet:
+    - VNetworkVISDKServer
+    - VNetworkHost
+    - ausgewähltes DATUM oder
+    - die ausgewählten letzten aktuellen UPLOADS
+
+    HINWEIS: Der Default Wert für den Adapter >> Vmxnet3 << kann in der Datei config.properties geändert werden">
+        vNetworkAdapter
+    </a>
+    <a th:href="@{/show_vnetworkmacaddress}" role="button" class="btn btn-outline-danger" data-toggle="tooltip"
+       data-placement="top" title="Listet alle DOPPELTEN MacAdressen aus der Tabelle VNetwork auf
+
+Die DOPPELTEN MacAdressen werden zusammen mit den den Spalten aus der Tabelle VNetwork aufgelistet:
+- VNetworkVISDKServer
+- VNetworkHost
+- ausgewähltes DATUM oder
+- die ausgewählten letzten aktuellen UPLOADS
+
+HINWEIS: der grau hinterlegte Datensatz signalisiert den jeweiligen Beginn der doppelten MacAdresse">
+        Dubletten MacAddress</a>
+    <a th:href="@{/show_vnetworkip4address}" role="button" class="btn btn-outline-danger" data-toggle="tooltip"
+       data-placement="top" title="Listet alle DOPPELTEN Ip4Adressen aus der Tabelle VNetwork auf
+
+Die DOPPELTEN Ip4Adressen werden zusammen mit den den Spalten aus der Tabelle VNetwork aufgelistet:
+- VNetworkVISDKServer
+- VNetworkHost
+- ausgewähltes DATUM oder
+- die ausgewählten letzten aktuellen UPLOADS
+
+HINWEIS: der grau hinterlegte Datensatz signalisiert den jeweiligen Beginn der doppelten Ip4Adressen">
+        Dubletten Ip4Address</a>
+    <a th:href="@{/show_all_vSnapshot}" role="button" class="btn btn-outline-danger" data-toggle="tooltip"
+       data-placement="top" title="Listet alle Datensätze aus der Tabelle vSnapshotVMName auf
+
+zusammen mit den den Spalten:
+- vSnapshotVMName
+- VNetworkHost
+- VNetworkVISDKServer
+- ausgewähltes DATUM oder
+- die ausgewählten letzten aktuellen UPLOADS">
+        vSnapshot</a>
+    <a th:href="@{/show_Hilfe}" role="button" class="btn btn-info" id="hilfeButton" data-toggle="tooltip"
+       data-placement="top" title="Informationen Anwendung und Einstellungen">
+    Hilfe</a>
+</div>
+
+<!-- Modal-Dialog / Excel Datei hochgeladen -->
+<div th:fragment="excelUploadedModal">
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <p id="modalText"></p>
+            <button id="modalButton" style="display: none;" onclick="closeModal()">OK</button>
+        </div>
+    </div>
+</div>
+</body>
+</html>

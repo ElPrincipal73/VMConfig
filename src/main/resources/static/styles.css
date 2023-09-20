@@ -1,0 +1,111 @@
+.red-button {
+    background-color: red;
+    color: white;
+}
+
+.green-button {
+    background-color: green;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+}
+
+.header-custom {
+    font-weight: bold;
+    text-decoration: underline;
+    text-decoration-color: red;
+}
+
+
+.file-input {
+    display: none;
+}
+
+body {
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+}
+
+.center {
+    text-align: center;
+}
+
+.container {
+    flex-direction: column;
+    align-items: flex-end;
+    display: flex;
+}
+
+table {
+    border-collapse: separate;
+    border-spacing: 0 1em;
+}
+
+th, td {
+    border: none;
+    padding: 0.5em;
+}
+
+.grey-background, .grey-markiert {
+    background-color: #D3D3D3;
+}
+
+tbody tr {
+    background-color: white;
+    border: 1px solid black;
+}
+
+.table-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.table-container table {
+    width: auto;
+    margin-bottom: 5em;
+}
+
+.table-container tbody tr:last-child td {
+    border-bottom: 1px solid black;
+}
+
+.right-align {
+    text-align: right;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+.modal-content {
+    background-color: white;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 50%;
+    max-width: 300px;
+}
+
+body {
+    height: auto;
+    margin: 0;
+    overflow-y: auto;
+}
+
+
+
+
+
+
+
+

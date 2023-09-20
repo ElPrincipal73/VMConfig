@@ -1,4 +1,4 @@
-package org.example;
+package de.comline;
 
 import java.util.logging.FileHandler;
 import java.util.logging.Level;

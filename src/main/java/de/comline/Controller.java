@@ -1,5 +1,4 @@
-package org.example;
-// Paketname ändern
+package de.comline;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.ui.Model;

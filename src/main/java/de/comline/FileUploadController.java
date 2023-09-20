@@ -1,4 +1,4 @@
-package org.example;
+package de.comline;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

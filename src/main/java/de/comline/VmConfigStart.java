@@ -11,5 +11,3 @@ public class VmConfigStart {
 	}
 }
 
-// Start der Springboot Anwendung und die verwendeten Bilbliothek
-// Start der Konfigurationen

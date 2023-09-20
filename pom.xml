@@ -8,10 +8,10 @@
 		<version>3.1.1</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.example</groupId>
+	<groupId>de.comline</groupId>
 	<artifactId>VmConfigMonitoring</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>my-first-rest-app</name>
+	<name>vmconfig</name>
 	<description>Restapp</description>
 	<properties>
 		<java.version>17</java.version>
@@ -29,6 +29,10 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
 		</dependency>
 
 		<dependency>

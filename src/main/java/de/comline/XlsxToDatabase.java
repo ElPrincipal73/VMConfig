@@ -139,16 +139,29 @@ public class XlsxToDatabase {
             conn.setAutoCommit(false);
             int count = 0;
             for (List<String> row : rows) {
-                int size = row.size();
-                for (int i = 0; i < size; i++) {
-                    pstmt.setString(i + 1, row.get(i));
+                boolean isDuplicateHeader = true;
+
+                // Überprüfe, ob die Zeile identisch mit der Spaltenüberschrift ist
+                for (int i = 0; i < columnNames.size(); i++) {
+                    String cellValue = row.get(i);
+                    if (cellValue == null || !cellValue.toLowerCase().trim().equals(columnNames.get(i))) {
+                        isDuplicateHeader = false;
+                        break;
+                    }
                 }
-                for (int i = size; i < columnNames.size(); i++) {
-                    pstmt.setString(i + 1, null);
-                }
-                pstmt.addBatch();
-                if (++count % 1000 == 0) {
-                    pstmt.executeBatch();
+
+                if (!isDuplicateHeader) {
+                    int size = row.size();
+                    for (int i = 0; i < size; i++) {
+                        pstmt.setString(i + 1, row.get(i));
+                    }
+                    for (int i = size; i < columnNames.size(); i++) {
+                        pstmt.setString(i + 1, null);
+                    }
+                    pstmt.addBatch();
+                    if (++count % 1000 == 0) {
+                        pstmt.executeBatch();
+                    }
                 }
             }
             pstmt.executeBatch();

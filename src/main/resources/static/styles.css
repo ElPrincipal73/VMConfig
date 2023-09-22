@@ -17,7 +17,6 @@
     text-decoration-color: red;
 }
 
-
 .file-input {
     display: none;
 }
@@ -63,11 +62,6 @@ tbody tr {
     width: 100%;
 }
 
-.table-container table {
-    width: auto;
-    margin-bottom: 5em;
-}
-
 .table-container tbody tr:last-child td {
     border-bottom: 1px solid black;
 }
@@ -101,11 +95,5 @@ body {
     margin: 0;
     overflow-y: auto;
 }
-
-
-
-
-
-
 
 

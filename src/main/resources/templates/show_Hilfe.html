@@ -16,6 +16,12 @@
     <!-- Bootstrap JS -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script type="text/javascript" th:src="@{/script.js}"></script>
+    <style>
+        /* Zusätzlicher CSS-Code für die mittige Ausrichtung der Tabelle */
+        .center-table {
+            margin: auto;
+        }
+    </style>
 </head>
 <body>
 <!--Aufbau der Seite-->
@@ -27,7 +33,100 @@
     <div th:insert="~{fragments :: buttons}"></div>
     <br>
     <h2>Informationen und Einstellungen</h2>
+    <div>
+        <table border="1" class="center-table">
+            <tr>
+                <td style="text-align: left;">
+                    <strong>Bedienung der Anwendung</strong>
+                    <ul>
+                        <li>Wähle Datum - es werden <b>alle</b> Datensätze des ausgewählten Datums angezeigt</li>
+                        <li>Wähle letzten Uploads - es werden entsprechend der Wahl mit dem <b>aktuellesten</b> Upload begonnen</li>
+                        <li>Wenn beide Auswahlen getroffen werden Datum <b>und</b> Letzten Uploads so wird <b>vorrangig das Datum</b> genommen
+                        <li>Wähle Reset Datum oder Reset Upload - Auswahl wird gelöscht</li>
+                        <li>Wenn Daten für den gewählten Zeitraum nicht vorhanden - Entsprechender Hinweis folgt</li>
+                    </ul>
+            </tr>
+        </table>
+    </div>
+    <br>
 
+    <div>
+    <table border="1" class="center-table">
+        <tr>
+            <th>Button/Datei</th>
+            <th>Erklärung</th>
+        </tr>
+        <tr>
+            <td><img src="/images/vmname_button.png" alt="VMName"></td>
+            <td style="text-align: left;">
+                <strong>Listet alle DOPPELTEN VMNamen aus der Tabelle VNetwork</strong>
+                <ul>
+                    <li>VNetworkVISDKServer</li>
+                    <li>VNetworkHost</li>
+                    <li>ausgewähltes DATUM oder</li>
+                    <li>die ausgewählten letzten aktuellen UPLOADS</li>
+                </ul>
+                <p><b>HINWEIS:</b> der grau hinterlegte Datensatz signalisiert den jeweiligen Beginn der doppelten VMNamen</p></td>
+        </tr>
+        <tr>
+            <td><img src="/images/networkadapter_button.png" alt="NetworkAdapter"></td>
+            <td style="text-align: left;">
+                <strong>Listet alle vNetworkAdapter aus der Tabelle VNetwork zusammen mit den Spalten:</strong>
+                <ul>
+                    <li>VNetworkVISDKServer</li>
+                    <li>VNetworkHost</li>
+                    <li>ausgewähltes DATUM oder</li>
+                    <li>die ausgewählten letzten aktuellen UPLOADS</li>
+                    auf, welche nicht den Wert <b>Vmxnet3</b> enthalten
+                </ul>
+                <p><b>HINWEIS:</b> Der Default Wert für den Adapter >> Vmxnet3 << kann in der Datei config.properties geändert werden</p></td>
+        </tr>
+        <tr>
+            <td><img src="/images/macaddress_button.png" alt="Macadresse"></td>
+            <td style="text-align: left;">
+                <strong>Listet alle DOPPELTEN MacAdressen aus der Tabelle VNetwork</strong>
+                <ul>
+                    <li>VNetworkVISDKServer</li>
+                    <li>VNetworkHost</li>
+                    <li>ausgewähltes DATUM oder</li>
+                    <li>die ausgewählten letzten aktuellen UPLOADS</li>
+                </ul>
+                <p><b>HINWEIS:</b> der grau hinterlegte Datensatz signalisiert den jeweiligen Beginn der doppelten VMNamen</p></td>
+        </tr>
+        <tr>
+            <td><img src="/images/ip4address_button.png" alt="Ip4adresse"></td>
+            <td style="text-align: left;">
+                <strong>Listet alle DOPPELTEN Ip4Adressen aus der Tabelle VNetwork</strong>
+                <ul>
+                    <li>VNetworkVISDKServer</li>
+                    <li>VNetworkHost</li>
+                    <li>ausgewähltes DATUM oder</li>
+                    <li>die ausgewählten letzten aktuellen UPLOADS</li>
+                </ul>
+                <p><b>HINWEIS:</b> der grau hinterlegte Datensatz signalisiert den jeweiligen Beginn der doppelten VMNamen</p></td>
+        </tr>
+        <tr>
+            <td><img src="/images/snapshot_button.png" alt="Ip4adresse"></td>
+            <td style="text-align: left;">
+                <strong>Listet alle Datensätze aus der Tabelle vSnapshotVMName vSnapshotVMName</strong>
+                <ul>
+                    <li>VNetworkHost</li>
+                    <li>VNetworkVISDKServer</li>
+                    <li>ausgewähltes DATUM oder</li>
+                    <li>die ausgewählten letzten aktuellen UPLOADS</li>
+                </ul>
+                <p><b>HINWEIS:</b> der grau hinterlegte Datensatz signalisiert den jeweiligen Beginn der doppelten VMNamen</p></td>
+        </tr> <tr>
+        <td><img src="/images/excelUpload_button.png" alt="Ip4adresse"></td>
+        <td style="text-align: left;">
+            <strong>Excel Datei auswählen und in die Datenbank exportieren</strong>
+            <ul>
+                <li>nur .xlsx Dateien zulässig</li>
+                <li>Bei Fehlermeldung wird ein Hinweis gegeben</li>
+            </ul>
+    </tr>
+    </table>
+</div>
 </div>
 <!-- Modal-Dialog / Excel Datei hochgeladen -->
 <div th:insert="~{fragments :: excelUploadedModal}"></div>

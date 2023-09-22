@@ -46,61 +46,22 @@
     <input type="file" id="excelUpload" class="file-input" accept=".xlsx">
 </div>
 <div th:fragment="buttons">
-    <a th:href="@{/show_vnetworkvmname}" role="button" class="btn btn-outline-danger" data-toggle="tooltip"
-       data-placement="top" title="Listet alle DOPPELTEN VMNamen aus der Tabelle VNetwork auf
-
-Die DOPPELTEN VMNamen werden zusammen mit den Spalten aus der Tabelle VNetwork aufgelistet:
-- VNetworkVISDKServer
-- VNetworkHost
-- ausgewähltes DATUM oder
-- die ausgewählten letzten aktuellen UPLOADS
-
-HINWEIS: der grau hinterlegte Datensatz signalisiert den jeweiligen Beginn der doppelten VMNamen">
+    <a th:href="@{/show_vnetworkinfo?column=vnetworkvmname}" role="button" class="btn btn-outline-danger" data-toggle="tooltip"
+       data-placement="top" title="Listet alle DOPPELTEN VMNamen aus der Tabelle VNetwork auf">
         Dubletten VMName
     </a>
     <a th:href="@{/show_vnetworkadapter}" role="button" class="btn btn-outline-danger" data-toggle="tooltip"
-       data-placement="top" title="Listet alle vNetworkAdapter auf, welche NICHT den Wert >>Vmxnet3<< beinhalten
-
-Diese >Vmxnet3< vNetworkAdapter werden zusammen mit den Spalten aus der Tabelle VNetwork aufgelistet:
-    - VNetworkVISDKServer
-    - VNetworkHost
-    - ausgewähltes DATUM oder
-    - die ausgewählten letzten aktuellen UPLOADS
-
-    HINWEIS: Der Default Wert für den Adapter >> Vmxnet3 << kann in der Datei config.properties geändert werden">
+       data-placement="top" title="Listet alle vNetworkAdapter auf, welche NICHT den Wert >>Vmxnet3<< beinhalten">
         vNetworkAdapter
     </a>
-    <a th:href="@{/show_vnetworkmacaddress}" role="button" class="btn btn-outline-danger" data-toggle="tooltip"
-       data-placement="top" title="Listet alle DOPPELTEN MacAdressen aus der Tabelle VNetwork auf
-
-Die DOPPELTEN MacAdressen werden zusammen mit den den Spalten aus der Tabelle VNetwork aufgelistet:
-- VNetworkVISDKServer
-- VNetworkHost
-- ausgewähltes DATUM oder
-- die ausgewählten letzten aktuellen UPLOADS
-
-HINWEIS: der grau hinterlegte Datensatz signalisiert den jeweiligen Beginn der doppelten MacAdresse">
+    <a th:href="@{/show_vnetworkinfo?column=vnetworkmacaddress}" role="button" class="btn btn-outline-danger" data-toggle="tooltip"
+       data-placement="top" title="Listet alle DOPPELTEN MacAdressen aus der Tabelle VNetwork auf">
         Dubletten MacAddress</a>
-    <a th:href="@{/show_vnetworkip4address}" role="button" class="btn btn-outline-danger" data-toggle="tooltip"
-       data-placement="top" title="Listet alle DOPPELTEN Ip4Adressen aus der Tabelle VNetwork auf
-
-Die DOPPELTEN Ip4Adressen werden zusammen mit den den Spalten aus der Tabelle VNetwork aufgelistet:
-- VNetworkVISDKServer
-- VNetworkHost
-- ausgewähltes DATUM oder
-- die ausgewählten letzten aktuellen UPLOADS
-
-HINWEIS: der grau hinterlegte Datensatz signalisiert den jeweiligen Beginn der doppelten Ip4Adressen">
+    <a th:href="@{/show_vnetworkinfo?column=vnetworkip4address}" role="button" class="btn btn-outline-danger" data-toggle="tooltip"
+       data-placement="top" title="Listet alle DOPPELTEN Ip4Adressen aus der Tabelle VNetwork auf">
         Dubletten Ip4Address</a>
     <a th:href="@{/show_all_vSnapshot}" role="button" class="btn btn-outline-danger" data-toggle="tooltip"
-       data-placement="top" title="Listet alle Datensätze aus der Tabelle vSnapshotVMName auf
-
-zusammen mit den den Spalten:
-- vSnapshotVMName
-- VNetworkHost
-- VNetworkVISDKServer
-- ausgewähltes DATUM oder
-- die ausgewählten letzten aktuellen UPLOADS">
+       data-placement="top" title="Listet alle Datensätze aus der Tabelle vSnapshotVMName auf">
         vSnapshot</a>
     <a th:href="@{/show_Hilfe}" role="button" class="btn btn-info" id="hilfeButton" data-toggle="tooltip"
        data-placement="top" title="Informationen Anwendung und Einstellungen">

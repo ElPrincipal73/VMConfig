@@ -52,12 +52,12 @@ $(function() {
                    alert("Bitte wählen Sie ein Datum oder die Anzahl der letzten Uploads aus !");
                } else {
                    var url = $(this).attr('href');
-                   if (date) {
-                       url += "?date=" + date;
-                   }
-                   if (uploadIndex) {
-                       url += (date ? "&" : "?") + "uploadIndex=" + uploadIndex;
-                   }
+                  if (date) {
+                      url += (url.indexOf("?") === -1 ? "?" : "&") + "date=" + date;
+                  }
+                  else if (uploadIndex) {
+                      url += (url.indexOf("?") === -1 ? "?" : "&") + "uploadIndex=" + uploadIndex;
+                  }
                    window.location.href = url;
                }
            });

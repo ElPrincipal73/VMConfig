@@ -50,7 +50,8 @@ public class XlsxToDatabase {
             }
         } catch (Exception e) {
             // Logge des Fehlers in die Datei
-            logger.severe("Fehler beim Importieren der Daten aus der Excel-Datei evtl. Excel Datei leer bzw. keine Spaltennamen");
+            logger.severe("Fehler beim Importieren der Daten aus der Excel-Datei evtl. Mögliche Ursachen: Die Excel-Datei ist leer oder enthält keine Spaltennamen.");
+            // e.printStackTrace nach dem Debugging raus
             e.printStackTrace();
             // Wirf eine IOException mit einer benutzerdefinierten Fehlermeldung Popup Fenster
             throw new IOException("Fehler beim Importieren der Daten aus der Excel-Datei.");
@@ -90,7 +91,7 @@ public class XlsxToDatabase {
     private List<List<String>> extractRows(Sheet sheet, int numColumns) {
         List<List<String>> rows = new ArrayList<>();
         Iterator<Row> rowIterator = sheet.rowIterator();
-        rowIterator.next(); // Skip header row
+        rowIterator.next(); // Überspringe die erste Zeile
 
         while (rowIterator.hasNext()) {
             Row row = rowIterator.next();

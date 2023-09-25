@@ -70,6 +70,7 @@ public class Controller {
 
             String query = queryBuilder.toString();
 
+
             try (PreparedStatement pstmt = conn.prepareStatement(query)) {
                 if (date != null) {
                     pstmt.setString(1, date);
@@ -103,7 +104,6 @@ public class Controller {
 
                         daten.add(row);
                     }
-                    System.out.println(daten);
                 }
             }
 

@@ -1,4 +1,4 @@
-package com.example.myfirstrestapp;
+package de.comline;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

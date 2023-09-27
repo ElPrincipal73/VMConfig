@@ -1,6 +1,6 @@
 package de.comline;
 
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import java.sql.*;
 import java.util.List;
@@ -10,21 +10,14 @@ import java.util.logging.Logger;
 @Component
 public class DatabaseHandler {
 
-    @Value("${db.url}")
-    private String DB_URL;
-
-    @Value("${db.user}")
-    private String USER;
-
-    @Value("${db.pass}")
-    private String PASS;
+    @Autowired
+    private DatabaseConfig databaseConfig;
 
     private static final Logger logger = Logger.getLogger(DatabaseHandler.class.getName());
 
     public Connection connectToDatabase() throws SQLException {
-        return DriverManager.getConnection(DB_URL, USER, PASS);
+        return DriverManager.getConnection(databaseConfig.getDbUrl(), databaseConfig.getUser(), databaseConfig.getPass());
     }
-
     public void createTableAndImportData(Connection conn, String tableName, List<String> columnNames, List<List<String>> rows) throws SQLException {
         StringJoiner columnDefinition = new StringJoiner(", ");
         StringJoiner placeholders = new StringJoiner(", ");

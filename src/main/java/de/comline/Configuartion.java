@@ -8,7 +8,7 @@ import java.util.logging.Logger;
 
 public class Configuartion {
     private Properties prop;
-    private static final Logger logger = AppLogger.getLogger(FileUploadController.class.getName());
+    private static final Logger logger = AppLogger.getLogger(Configuartion.class.getName());
 
     public Configuartion() {
         this.prop = new Properties();

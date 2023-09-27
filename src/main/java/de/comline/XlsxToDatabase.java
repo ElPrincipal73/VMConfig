@@ -19,6 +19,7 @@ public class XlsxToDatabase {
 
     @Autowired
     private DatabaseHandler databaseHandler;
+
     @Autowired
     private DatabaseConfig databaseConfig;
 
@@ -40,3 +41,4 @@ public class XlsxToDatabase {
         }
     }
 }
+

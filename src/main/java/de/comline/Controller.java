@@ -21,7 +21,7 @@ public class Controller {
     @Value("${db.pass}")
     private String PASS;
 
-    private int maxUploadIndex = -1;  // Klassenvariable warum auf -1
+    private int maxUploadIndex = -1;  // Klassenvariable warum auf -1 ????????????????
     private static final String[] COMMON_COLUMN_ORDER = {"vnetworkvisdkserver", "vnetworkhost", "upload_index", "import_date"};
     private static final Logger logger = AppLogger.getLogger(Controller.class.getName());
 
@@ -42,9 +42,23 @@ public class Controller {
                                    @RequestParam(required = false) Integer uploadIndex,
                                    @RequestParam String column, Model model) {
         List<Map<String, Object>> daten = fetchDataFromDB(column, date, uploadIndex);
+        markFirstDuplicates(daten, column); // Neue Methode zum Markieren der ersten Duplikate
         handleData(daten, model);
         addAttributesToModel(daten, model, column, date, uploadIndex);
         return "show_vnetworkinfo";
+    }
+
+    private void markFirstDuplicates(List<Map<String, Object>> daten, String columnKey) {
+        Set<Object> seen = new HashSet<>();
+        for (Map<String, Object> datenItem : daten) {
+            Object key = datenItem.get(columnKey); // Das Feld, anhand dessen Duplikate erkannt werden
+            if (seen.contains(key)) {
+                datenItem.put("isFirstDuplicate", false);
+            } else {
+                seen.add(key);
+                datenItem.put("isFirstDuplicate", true);
+            }
+        }
     }
 
     private List<Map<String, Object>> fetchDataFromDB(String column, String date, Integer uploadIndex) {

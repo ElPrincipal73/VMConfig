@@ -21,7 +21,7 @@ $(function() {
                         body: formData
                     }).then(function(response) {
                         if (!response.ok) {
-                            throw new Error("Fehler beim Hochladen der Excel-Datei.Die Datei ist leer oder hat keine Spaltennamen.");
+                            throw new Error("Fehler beim importieren der Excel-Datei. Die Datei ist leer oder hat keine Spaltennamen.");
                         }
                         return response.text();
                     }).then(function(text) {
@@ -34,7 +34,7 @@ $(function() {
                         $("#excelUpload").prop('disabled', false);
                     });
                 } else {
-                    alert("Bitte laden Sie eine .xlsx Datei hoch.");
+                    alert("Bitte laden Sie eine Exceldatei mit der Endung .xlsx Datei hoch.");
                 }
             });
 

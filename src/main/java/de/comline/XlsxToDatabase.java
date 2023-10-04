@@ -23,7 +23,8 @@ public class XlsxToDatabase {
     @Autowired
     private DatabaseConfig databaseConfig;
 
-    private static final Logger logger = Logger.getLogger(XlsxToDatabase.class.getName());
+    private static final Logger logger = AppLogger.getLogger(XlsxToDatabase.class.getName());
+
 
     public void importDataFromExcel(MultipartFile file) throws IOException {
         try (Connection conn = databaseHandler.connectToDatabase()) {
@@ -36,8 +37,8 @@ public class XlsxToDatabase {
                 databaseHandler.createTableAndImportData(conn, sheet.getSheetName().toLowerCase(), columnNames, rows);
             }
         } catch (Exception e) {
-            logger.severe("Fehler beim Importieren der Daten aus der Excel-Datei.");
-            throw new IOException("Fehler beim Importieren der Daten aus der Excel-Datei.");
+            logger.severe("Fehler beim importieren der Daten aus der Excel-Datei.Die Datei ist leer oder hat keine Spaltennamen");
+            throw new IOException("Fehler beim importieren der Daten aus der Excel-Datei. Die Datei ist leer oder hat keine Spaltennamen");
         }
     }
 }

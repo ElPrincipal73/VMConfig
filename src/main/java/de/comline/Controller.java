@@ -84,8 +84,8 @@ public class Controller {
 
     private void handleData(List<Map<String, Object>> daten, Model model) {
         if (daten.isEmpty()) {
-            model.addAttribute("errorMessage", "Keine Daten gefunden");
-            logger.severe("Keine Daten gefunden");
+            model.addAttribute("errorMessage", "Keine Daten für den ausgewählten Zeitraum gefunden");
+            logger.info("Keine Daten für den Zeitraum gefunden");
         }
     }
 

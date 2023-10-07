@@ -14,42 +14,34 @@ public class ExcelReader {
 
     private static final Logger logger = Logger.getLogger(ExcelReader.class.getName());
 
-    public List<String> extractColumnNames(Sheet sheet) throws IOException {
+    //    Spaltenüberschriften extrahieren
+    public List<String> extractColumnNames(Sheet sheet) {
         List<String> columnNames = new ArrayList<>();
         Row firstRow = sheet.getRow(0);
         Iterator<Cell> cellIterator = firstRow.cellIterator();
 
-        if (firstRow == null || firstRow.getLastCellNum() <= 0) {
-            logger.severe("Keine Spaltenüberschriften gefunden");
-            throw new IOException("Keine Spaltenüberschriften gefunden.");
-        }
-
         while (cellIterator.hasNext()) {
             Cell cell = cellIterator.next();
             String cellValue = cell.toString().toLowerCase().trim();
-
-            if (cellValue.isEmpty()) {
-                logger.severe("Leere Spaltenüberschrift gefunden");
-                throw new IOException("Leere Spaltenüberschrift gefunden.");
-            }
-
             columnNames.add(cellValue);
         }
-
         return columnNames;
     }
 
     public List<List<String>> extractRows(Sheet sheet, int numColumns) {
         List<List<String>> rows = new ArrayList<>();
-        Iterator<Row> rowIterator = sheet.rowIterator();
-        rowIterator.next(); // Überspringe die erste Zeile
+        Iterator<Row> rowIterator = sheet.rowIterator(); //
+        rowIterator.next(); // Überspringe die erste Zeile, weil in der oberen Methode die Spaltennamen schon extrahiert sind
 
         while (rowIterator.hasNext()) {
             Row row = rowIterator.next();
+            // Es wird eine leere Liste mit "Null" Wert initialisiert als Platzhalter für Anzahl der Spalten als Prevention
+            // Vorbeugen durch Indexfehler Werte aus Methode extractRows übereinstimmen mit rowData
             List<String> rowData = new ArrayList<>();
             for (int i = 0; i < numColumns; i++) {
                 rowData.add(null);
             }
+
             Iterator<Cell> cellIterator = row.cellIterator();
             while (cellIterator.hasNext()) {
                 Cell cell = cellIterator.next();

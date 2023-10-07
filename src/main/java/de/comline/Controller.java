@@ -42,7 +42,7 @@ public class Controller {
                                    @RequestParam(required = false) Integer uploadIndex,
                                    @RequestParam String column, Model model) {
         List<Map<String, Object>> daten = fetchDataFromDB(column, date, uploadIndex);
-        markFirstDuplicates(daten, column); // Neue Methode zum Markieren der ersten Duplikate
+        markFirstDuplicates(daten, column); // Neue Methode zum Markieren der ersten  vorkommenden Duplikate
         handleData(daten, model);
         addAttributesToModel(daten, model, column, date, uploadIndex);
         return "show_vnetworkinfo";
@@ -61,6 +61,7 @@ public class Controller {
         }
     }
 
+//
     private List<Map<String, Object>> fetchDataFromDB(String column, String date, Integer uploadIndex) {
         List<Map<String, Object>> daten = new ArrayList<>();
         try (Connection conn = DriverManager.getConnection(DB_URL, USER, PASS)) {

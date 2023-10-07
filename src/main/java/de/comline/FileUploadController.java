@@ -14,7 +14,7 @@ public class FileUploadController {
     private XlsxToDatabase xlsxToDatabase;
 
     @PostMapping("/excel-upload")
-    public void handleFileUpload(@RequestParam("file") MultipartFile file) throws IOException, SQLException {
+    public void handleFileUpload(@RequestParam("file") MultipartFile file) throws IOException{
         xlsxToDatabase.importDataFromExcel(file);
     }
 }

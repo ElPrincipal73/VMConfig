@@ -37,8 +37,8 @@ public class XlsxToDatabase {
                 databaseHandler.createTableAndImportData(conn, sheet.getSheetName().toLowerCase(), columnNames, rows);
             }
         } catch (Exception e) {
-            logger.severe("Fehler beim importieren der Daten aus der Excel-Datei.Die Datei ist leer oder hat keine Spaltennamen");
-            throw new IOException("Fehler beim importieren der Daten aus der Excel-Datei. Die Datei ist leer oder hat keine Spaltennamen");
+            logger.severe("Fehler beim Importieren der Daten.Die Datei ist leer oder es fehlen oder es sind keine Spaltenüberschriften vorhanden");
+            throw new IOException("Fehler beim importieren der Daten.Die Datei ist leer oder hat keine Spaltenüberschriften");
         }
     }
 }

@@ -5,23 +5,23 @@ $(function() {
                 changeYear: true
             });
 
-
+            // Funktion wenn Excel Datei ausgewählt wurde
             $("#excelUpload").change(function() {
-                var file = this.files[0];
-                if (file && file.name.endsWith(".xlsx")) {
-                    $("#excelUpload").prop('disabled', true);
-                    $("#modalText").text("Daten werden geladen, bitte warten...");
-                    $("#myModal").show();
+                var file = this.files[0];                       // Datei wird der Variable "file" übergeben
+                if (file && file.name.endsWith(".xlsx")) {      // Prüfung ob Datei leer und die Endung .xlsx hat
+                    $("#excelUpload").prop('disabled', true);   // Excel Upload Button wird deaktiviert, Benutzer kann keine weitere Datei zusätzlich hochladen
+                    $("#modalText").text("Daten werden geladen, bitte warten...");      // Modal Fenster Anzeige Status Meldung
+                    $("#uploadModal").show();                       // Modal Fenster
 
-                    var formData = new FormData();
+                    var formData = new FormData();              // formData Objekt erzeugt um Datei für den Upload zum Server vorzubereiten
                     formData.append("file", file);
 
-                    fetch("/excel-upload", {
+                    fetch("/excel-upload", {                    // Fetch Anfrage um die Datei auf dem Server zu laden, Anfrage am Endpunkt /excel-upload
                         method: "POST",
                         body: formData
-                    }).then(function(response) {
+                    }).then(function(response) {                // Anfrage Response ok?
                         if (!response.ok) {
-                            throw new Error("Fehler beim importieren der Excel-Datei. Die Datei ist leer oder hat keine Spaltennamen.");
+                            throw new Error("Fehler beim Importieren der Daten. Die Datei ist leer oder hat keine Spaltenüberschriften.");
                         }
                         return response.text();
                     }).then(function(text) {
@@ -38,6 +38,7 @@ $(function() {
                 }
             });
 
+            // Hilfe Button Navigation
            $("a.btn").click(function(event) {
                var buttonId = $(this).attr('id');
                if(buttonId === "hilfeButton") {
@@ -45,6 +46,7 @@ $(function() {
                    return; // Frühzeitiger Ausstieg aus der Funktion
                }
 
+                // Funktion um Query Parameter , ob schon ein Fragezeichen vorhanden und dann & Zeichen
                event.preventDefault();
                var date = $("#datepicker").val();
                var uploadIndex = $("#uploadIndex").val();
@@ -65,7 +67,7 @@ $(function() {
         });
 
         function closeModal() {
-            $("#myModal").hide();
+            $("#uploadModal").hide();
             $("#modalButton").hide();
         }
 

@@ -21,6 +21,8 @@ public class DatabaseConfig {
     @Value("${db.pass}")
     private String pass;
 
+    private static final Logger logger = Logger.getLogger(DatabaseConfig.class.getName());
+
     public String getDbUrl() {
         return dbUrl;
     }
@@ -32,16 +34,14 @@ public class DatabaseConfig {
     public String getPass() {
         return pass;
     }
-    private static final Logger logger = AppLogger.getLogger(DatabaseConfig.class.getName());
 
     @Bean
     public Connection databaseConnection() {
         try {
             return DriverManager.getConnection(dbUrl, user, pass);
         } catch (SQLException e) {
-            logger.severe("Datenbankverbindung fehlgeschlagen,Logdaten überprüfen: " + e.getMessage());
+            logger.severe("Datenbankverbindung fehlgeschlagen, Logdaten überprüfen: " + e.getMessage());
             throw new RuntimeException("Datenbankverbindung fehlgeschlagen", e);
         }
     }
 }
-

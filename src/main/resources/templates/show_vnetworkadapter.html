@@ -25,15 +25,11 @@
     </thead>
     <tbody>
     <tr th:each="datenItem : ${daten}">
-
-      <!-- Explizite Datenzelle für 'vNetworkAdapter' mit zentriertem Text -->
-      <td class="text-center" th:text="${datenItem['vNetworkAdapter']}"></td>
-
-      <!-- Dynamische Generierung der anderen Datenzellen, überspringen von 'vNetworkAdapter' und 'isFirstDuplicate' -->
-      <td class="text-center" th:each="entry : ${datenItem.entrySet()}"
-          th:if="${entry.key != 'vNetworkAdapter' && entry.key != 'isFirstDuplicate'}"
-          th:text="${entry.value}">
-      </td>
+      <td class="text-center" th:text="${datenItem.vNetworkAdapter}"></td>
+      <td class="text-center" th:text="${datenItem.vNetworkVISDKServer}"></td>
+      <td class="text-center" th:text="${datenItem.vNetworkHost}"></td>
+      <td class="text-center" th:text="${datenItem.import_date}"></td>
+      <td class="text-center" th:text="${datenItem.upload_index}"></td>
     </tr>
     </tbody>
   </table>

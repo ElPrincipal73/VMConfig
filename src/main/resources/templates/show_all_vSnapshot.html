@@ -27,17 +27,21 @@
         <!-- Explizite Datenzelle für 'vSnapshotVMName' -->
         <td class="center" th:text="${datenItem['vSnapshotVMName']}"></td>
 
-        <!-- Dynamische Generierung der Datenzellen, ohne 'vSnapshotVMName', 'upload_index' und 'import_date' -->
-        <td class="center" th:each="entry : ${datenItem.entrySet()}"
-            th:if="${entry.key != 'vSnapshotVMName' && entry.key != 'upload_index' && entry.key != 'import_date'}"
-            th:text="${entry.value}">
-        </td>
+          <!-- Explizite Datenzelle für 'vSnapshotVMName' -->
+          <td class="center" th:text="${datenItem.vSnapshotVMName}"></td>
 
-        <!-- Explizite Datenzelle für 'upload_index' -->
-        <td class="center" th:text="${datenItem['upload_index']}"></td>
+          <!-- Explizite Datenzelle für 'vSnapshotVISDKServer' -->
+          <td class="center" th:text="${datenItem.vSnapshotVISDKServer}"></td>
 
-        <!-- Explizite Datenzelle für 'import_date' -->
-        <td class="center" th:text="${datenItem['import_date']}"></td>
+          <!-- Explizite Datenzelle für 'vSnapshotHost' -->
+          <td class="center" th:text="${datenItem.vSnapshotHost}"></td>
+
+          <!-- Explizite Datenzelle für 'upload_index' -->
+          <td class="center" th:text="${datenItem.upload_index}"></td>
+
+          <!-- Explizite Datenzelle für 'import_date' -->
+          <td class="center" th:text="${datenItem.import_date}"></td>
+
       </tr>
       </tbody>
     </table>

@@ -2,7 +2,7 @@ package de.comline.Controllers;
 
 import java.util.List;
 import java.util.logging.Logger;
-import de.comline.Models.VSnapshot;
+import de.comline.Model.VSnapshot;
 
 import de.comline.service.VSnapshotService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +23,7 @@ public class VSnapshotController {
     public String vnetworkShowAll(@RequestParam(required = false) String date,
                                   @RequestParam(required = false) Integer uploadIndex,
                                   Model model) {
-        List<de.comline.Models.VSnapshot> daten = vSnapshotService.getAllSnapshots(date, uploadIndex);
+        List<de.comline.Model.VSnapshot> daten = vSnapshotService.getAllSnapshots(date, uploadIndex);
 
         if (daten.isEmpty()) {
             model.addAttribute("errorMessage", "Keine Daten für den ausgewählten Zeitraum gefunden");

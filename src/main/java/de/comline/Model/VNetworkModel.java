@@ -1,4 +1,4 @@
-package de.comline.dao;
+package de.comline.Model;
 
 import de.comline.AppLogger;
 import org.springframework.beans.factory.annotation.Value;
@@ -13,7 +13,7 @@ import java.util.Map;
 import java.util.logging.Logger;
 
 @Repository
-public class VNetworkDAO {
+public class VNetworkModel {
 
     @Value("${db.url}")
     private String DB_URL;

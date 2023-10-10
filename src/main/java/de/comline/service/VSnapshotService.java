@@ -3,7 +3,7 @@ package de.comline.service;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
-import de.comline.Models.VSnapshot;
+import de.comline.Model.VSnapshot;
 
 import java.util.List;
 import java.util.Map;

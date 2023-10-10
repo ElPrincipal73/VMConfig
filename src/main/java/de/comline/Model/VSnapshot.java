@@ -1,4 +1,4 @@
-package de.comline.Models;
+package de.comline.Model;
 
 public class VSnapshot {
 

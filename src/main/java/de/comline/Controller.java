@@ -16,13 +16,13 @@ public class Controller {
     private String PASS;
 
 
-    // Starten der Anwendung --> Index
+
     @GetMapping("/index")
     public String index() {
         return "index";
     }
 
-    // Hilfe Seite aufrufen
+
     @GetMapping("/show_Hilfe")
     public String showHelp() {
         return "show_Hilfe";

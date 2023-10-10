@@ -1,4 +1,4 @@
-package de.comline;
+package de.comline.Controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
-import java.util.Map;
 import java.util.logging.Logger;
 
 @org.springframework.stereotype.Controller
@@ -21,7 +20,7 @@ public class VNetworkAdapterController {
     public String networkAdapter(@RequestParam(required = false) String date,
                                  @RequestParam(required = false) Integer uploadIndex,
                                  Model model) {
-        List<Map<String, Object>> daten = vNetworkAdapterService.fetchVNetworkAdapterData(date, uploadIndex);
+        List<de.comline.VNetworkAdapterModel> daten = vNetworkAdapterService.fetchVNetworkAdapterData(date, uploadIndex);
 
         if (daten.isEmpty()) {
             model.addAttribute("errorMessage", "Keine Daten für den ausgewählten Zeitraum gefunden");
@@ -31,12 +30,8 @@ public class VNetworkAdapterController {
         String[] columnOrder = {"vNetworkAdapter", "vNetworkVISDKServer", "vNetworkHost", "upload_index", "import_date"};
         model.addAttribute("columnOrder", columnOrder);
         model.addAttribute("daten", daten);
-
-        if (date != null) {
-            model.addAttribute("date", date);
-        } else if (uploadIndex != null) {
-            model.addAttribute("uploadIndex", uploadIndex);
-        }
+        model.addAttribute("date", date);
+        model.addAttribute("uploadIndex", uploadIndex);
 
         return "show_vnetworkadapter";
     }

@@ -5,9 +5,8 @@ import org.springframework.stereotype.Service;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+import java.util.logging.Logger;
 
 @Service
 public class VNetworkAdapterService {
@@ -22,8 +21,9 @@ public class VNetworkAdapterService {
     @Value("${excludedNetworkAdapter}")
     private String excludedNetworkAdapter;
 
-    public List<Map<String, Object>> fetchVNetworkAdapterData(String date, Integer uploadIndex) {
-        List<Map<String, Object>> daten = new ArrayList<>();
+
+    public List<de.comline.VNetworkAdapterModel> fetchVNetworkAdapterData(String date, Integer uploadIndex) {
+        List<de.comline.VNetworkAdapterModel> daten = new ArrayList<>();
         String tableName = "vnetwork";
 
         try (Connection conn = DriverManager.getConnection(DB_URL, USER, PASS)) {
@@ -35,7 +35,13 @@ public class VNetworkAdapterService {
 
                 try (ResultSet rsAdapter = pstmt.executeQuery()) {
                     while (rsAdapter.next()) {
-                        daten.add(getRowForAdapter(rsAdapter));
+                        de.comline.VNetworkAdapterModel model = new de.comline.VNetworkAdapterModel();
+                        model.setVNetworkAdapter(rsAdapter.getString("vNetworkAdapter"));
+                        model.setVNetworkVISDKServer(rsAdapter.getString("vNetworkVISDKServer"));
+                        model.setVNetworkHost(rsAdapter.getString("vNetworkHost"));
+                        model.setImportDate(rsAdapter.getString("import_date"));
+                        model.setUploadIndex(rsAdapter.getInt("upload_index"));
+                        daten.add(model);
                     }
                 }
             }
@@ -92,15 +98,5 @@ public class VNetworkAdapterService {
             pstmt.setInt(1, maxUploadIndex);
             pstmt.setString(2, excludedNetworkAdapter);
         }
-    }
-
-    private Map<String, Object> getRowForAdapter(ResultSet rsAdapter) throws SQLException {
-        Map<String, Object> row = new HashMap<>();
-        row.put("vNetworkAdapter", rsAdapter.getObject("vNetworkAdapter"));
-        row.put("vNetworkVISDKServer", rsAdapter.getObject("vNetworkVISDKServer"));
-        row.put("vNetworkHost", rsAdapter.getObject("vNetworkHost"));
-        row.put("import_date", rsAdapter.getObject("import_date"));
-        row.put("upload_index", rsAdapter.getObject("upload_index"));
-        return row;
     }
 }
